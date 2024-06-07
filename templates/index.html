@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Scrapping online</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" />
+</head>
+
+<body>
+  <header class="header">
+    <h1 id="title">Скраппинг Social lib</h1>
+  </header>
+  <main>
+    <div class="container">
+
+      <div class="choice">
+        <button id="button1" style="display:block;" class="target-button" onclick="fetchNews();">Последние новости</button>
+        <button id="button2" style="display:block;" class="target-button" onclick="fetchForumTopics();">Последние темы форума</button>
+      </div>
+
+      <div class="output_result" id="output_result">
+      </div>
+
+      <div class="action" id="linkButtons" style="display:none;">
+        <!-- Кнопки с выбором ссылок будут добавляться сюда -->
+      </div>
+
+      <div class="choice">
+        <button id="back1" style="display:none;" class="target-button" onclick="goBackToStart()">Назад</button>
+        <button id="back2" style="display:none;" onclick="goBackToFirstAction()" class="target-button">Назад</button>
+        <button id="download" style="display:none;" class="target-button">Скачать</button>
+      </div>
+    </div>
+    <script src="{{ url_for('static', filename='js/algoritm.js') }}"></script>
+  </main>
+</body>
+</html>
