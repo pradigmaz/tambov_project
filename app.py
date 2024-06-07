@@ -50,5 +50,17 @@ def parse_forum():
 
     return jsonify(data)
 
+@app.route('/parsing/news_body', methods=['POST'])
+def parse_news_body():
+    link = request.json.get('link')
+    response = requests.get(link)
+    html = response.text
+    soup = BeautifulSoup(html, 'lxml')
+    news_content = soup.find('div', class_='news__content')
+    if news_content:
+        content = str(news_content)
+        return jsonify({'content': content})
+    return jsonify({'content': 'Content not found'}), 404
+
 if __name__ == '__main__':
     app.run(debug=True)

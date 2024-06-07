@@ -40,7 +40,7 @@ function fetchNews() {
       button.className = 'target-button news-button'; // Добавляем класс news-button
       button.innerHTML = item.title;
       button.onclick = function() {
-        window.open(item.link, '_blank');
+        showModal(item.title, item.link);
       };
       linkButtons.appendChild(button);
     });
@@ -50,6 +50,28 @@ function fetchNews() {
     document.getElementById('back1').style.display = '';
   })
   .catch(error => console.error('Error:', error));
+}
+
+function fetchNewsBody(link) {
+  fetch('/parsing/news_body', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ link: link })
+  })
+  .then(response => response.json())
+  .then(data => {
+    document.getElementById('newsModalBody').innerHTML = data.content;
+  })
+  .catch(error => console.error('Error:', error));
+}
+
+function showModal(title, link) {
+  document.getElementById('newsModalLabel').innerText = title;
+  fetchNewsBody(link);
+  let newsModal = new bootstrap.Modal(document.getElementById('newsModal'));
+  newsModal.show();
 }
 
 function fetchForumTopics() {
@@ -109,4 +131,3 @@ document.getElementById('action2').onclick = function () {
   document.getElementById('download').style.display = '';
   currentState = 'secondAction';
 };
-

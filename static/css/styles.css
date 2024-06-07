@@ -1,9 +1,9 @@
-body {
+.body-style {
   width: 100%;
   height: 100vh;
   margin: 0;
-  background-color: #1b1b32;
-  color: #f5f6f7;
+  background-color: #1b1b32; /* Dark background color */
+  color: #f5f6f7; /* Light text color */
   font-family: Tahoma;
   font-size: 16px;
 }
@@ -13,7 +13,6 @@ body {
   justify-content: center;
   padding: 1em;
   box-sizing: border-box;
-
 }
 
 h1,
@@ -45,23 +44,21 @@ form {
   z-index: 0;
   margin: 0 auto;
   display: flex;
-
 }
 
 .action {
   display: grid;
-    grid-template-columns: 1fr; /* Определяет одну колонку */
-    align-items: start; /* Выравнивание по верхнему краю */
-    gap: 10px; /* Отступы между элементами */
-    margin-bottom: 30px;
+  grid-template-columns: 1fr; /* One column layout */
+  align-items: start; /* Align items to the top */
+  gap: 10px; /* Space between items */
+  margin-bottom: 30px;
 }
 
-
 .target-button {
-  min-width: 100px; /* Минимальная ширина кнопки */
-  max-width: 300px; /* Максимальная ширина кнопки */
-  width: auto; /* Автоматическая подстройка ширины */
-  height: auto; /* Автоматическая подстройка высоты */
+  min-width: 100px; /* Minimum button width */
+  max-width: 300px; /* Maximum button width */
+  width: auto; /* Auto width */
+  height: auto; /* Auto height */
   border: none;
   outline: none;
   color: #fff;
@@ -71,8 +68,8 @@ form {
   z-index: 0;
   border-radius: 10px;
   margin: 0 auto;
-  padding: 10px 20px; /* Добавляем отступы внутри кнопки */
-  box-sizing: border-box; /* Учитываем отступы в ширине кнопки */
+  padding: 10px 20px; /* Padding inside button */
+  box-sizing: border-box; /* Include padding in width */
 }
 
 .target-button:before {
@@ -93,7 +90,7 @@ form {
 }
 
 .target-button:active {
-  color: #000
+  color: #000;
 }
 
 .target-button:active:after {
@@ -116,7 +113,6 @@ form {
   border-radius: 10px;
 }
 
-
 .output_result {
   display: flex;
   align-items: center;
@@ -127,19 +123,26 @@ form {
   0% {
     background-position: 0 0;
   }
-
   50% {
     background-position: 400% 0;
   }
-
   100% {
     background-position: 0 0;
   }
 }
 
 .news-button {
-  font-size: 1.2em; /* Увеличиваем размер шрифта */
-  margin: 10px auto; /* Добавляем отступы между кнопками и центрируем их */
-  display: block; /* Делаем кнопки блочными элементами для центрирования */
-  text-align: center; /* Центрируем текст внутри кнопок */
+  font-size: 1.2em; /* Increase font size */
+  margin: 10px auto; /* Add margin and center */
+  display: block; /* Make buttons block elements */
+  text-align: center; /* Center text inside buttons */
+}
+
+.dark-modal .modal-content {
+  background-color: #333; /* Тёмный фон */
+  color: #f5f6f7; /* Светлый текст */
+}
+
+.modal-xl {
+  max-width: 90%;
 }
