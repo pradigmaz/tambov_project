@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Парсер комментариев</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        #commentForm {
+            margin-bottom: 20px;
+        }
+        #commentForm input, #commentForm textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            box-sizing: border-box;
+        }
+        #commentForm button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        #commentForm button:hover {
+            background-color: #45a049;
+        }
+        #commentsList {
+            list-style-type: none;
+            padding: 0;
+        }
+        #commentsList li {
+            background: #f9f9f9;
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+        #scrapedComments {
+            margin-top: 20px;
+        }
+        #scrapedComments h2 {
+            text-align: center;
+        }
+        #scrapedComments ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        #scrapedComments li {
+            background: #e9e9e9;
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <h1>Парсер комментариев</h1>
+    <form id="commentForm">
+        <input type="text" id="name" placeholder="Ваше имя" required>
+        <textarea id="comment" placeholder="Ваш комментарий" required></textarea>
+        <button type="submit">Отправить</button>
+    </form>
+    <button id="scrapeBtn">Собрать комментарии</button>
+    <ul id="commentsList"></ul>
+
+    <div id="scrapedComments">
+        <h2>Спарсенные комментарии</h2>
+        <ul id="scrapedCommentsList"></ul>
+    </div>
+
+    <script>
+        document.getElementById('scrapeBtn').addEventListener('click', async () => {
+            const response = await fetch('/scrape');
+            const data = await response.json();
+            const commentsList = document.getElementById('scrapedCommentsList');
+            commentsList.innerHTML = '';
+            data.comments.forEach(comment => {
+                const li = document.createElement('li');
+                li.textContent = comment;
+                commentsList.appendChild(li);
+            });
+        });
+
+        document.getElementById('commentForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const comment = document.getElementById('comment').value;
+            const response = await fetch('/add-comment', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ name, comment })
+            });
+            const data = await response.json();
+            if (data.success) {
+                const commentsList = document.getElementById('commentsList');
+                const li = document.createElement('li');
+                li.textContent = `${name}: ${comment}`;
+                commentsList.appendChild(li);
+                document.getElementById('commentForm').reset();
+            }
+        });
+    </script>
+</body>
+</html>

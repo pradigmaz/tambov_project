@@ -1,0 +1,148 @@
+.body-style {
+  width: 100%;
+  height: 100vh;
+  margin: 0;
+  background-color: #1b1b32; /* Dark background color */
+  color: #f5f6f7; /* Light text color */
+  font-family: Tahoma;
+  font-size: 16px;
+}
+
+.container {
+  display: block;
+  justify-content: center;
+  padding: 1em;
+  box-sizing: border-box;
+}
+
+h1,
+h2,
+p {
+  margin: 1em auto;
+  text-align: center;
+}
+
+form {
+  width: 60vw;
+  max-width: 500px;
+  min-width: 300px;
+  margin: 0 auto;
+  padding-bottom: 2em;
+}
+
+.header {
+  margin-top: 2%;
+}
+
+.choice {
+  justify-content: space-between;
+  width: 800px;
+  height: 50px;
+  border: none;
+  outline: none;
+  position: relative;
+  z-index: 0;
+  margin: 0 auto;
+  display: flex;
+}
+
+.action {
+  display: grid;
+  grid-template-columns: 1fr; /* One column layout */
+  align-items: start; /* Align items to the top */
+  gap: 10px; /* Space between items */
+  margin-bottom: 30px;
+}
+
+.target-button {
+  min-width: 100px; /* Minimum button width */
+  max-width: 300px; /* Maximum button width */
+  width: auto; /* Auto width */
+  height: auto; /* Auto height */
+  border: none;
+  outline: none;
+  color: #fff;
+  background: #111;
+  cursor: pointer;
+  position: relative;
+  z-index: 0;
+  border-radius: 10px;
+  margin: 0 auto;
+  padding: 10px 20px; /* Padding inside button */
+  box-sizing: border-box; /* Include padding in width */
+}
+
+.target-button:before {
+  content: '';
+  background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  background-size: 400%;
+  z-index: -1;
+  filter: blur(5px);
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  animation: glowing 20s linear infinite;
+  opacity: 0;
+  transition: opacity .3s ease-in-out;
+  border-radius: 10px;
+}
+
+.target-button:active {
+  color: #000;
+}
+
+.target-button:active:after {
+  background: transparent;
+}
+
+.target-button:hover:before {
+  opacity: 1;
+}
+
+.target-button:after {
+  z-index: -1;
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #111;
+  left: 0;
+  top: 0;
+  border-radius: 10px;
+}
+
+.output_result {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@keyframes glowing {
+  0% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 400% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
+
+.news-button {
+  font-size: 1.2em; /* Increase font size */
+  margin: 10px auto; /* Add margin and center */
+  display: block; /* Make buttons block elements */
+  text-align: center; /* Center text inside buttons */
+}
+
+.dark-modal .modal-content {
+  background-color: #333; /* Тёмный фон */
+  color: #f5f6f7; /* Светлый текст */
+}
+
+.modal-xl {
+  max-width: 90%;
+}
