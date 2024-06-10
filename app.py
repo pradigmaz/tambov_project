@@ -21,6 +21,8 @@ def parse():
         reviews = []
         for comment in comments:
             author = comment.get('data-author', 'Неизвестно')
+            if 'Официальный комментарий' in author:
+                continue
             gender = comment.get('data-author-gender', 'Неизвестно')
             comment_id = comment.get('data-id', 'Неизвестно')
             review_text_element = comment.find('span', class_='js-comment-content')
